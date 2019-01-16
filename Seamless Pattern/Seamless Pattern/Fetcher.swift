@@ -8,7 +8,7 @@
 
 import Foundation
 
-let ExampleURL = "https://www.dropbox.com/s/1j762qv23grnsu5/SeamlessPatternExamples2.json?dl=1"
+let ExampleURL = "https://www.dropbox.com/s/1nlv8zanhmojyq2/ExampleImageLinks_Trial.json?dl=1"
 //let ExampleURL = "https://www.dropbox.com/s/myzwrkvau253nth/networkTrial2.json?dl=1"
 //networkAcessTrial file's link: "https://www.dropbox.com/s/myzwrkvau253nth/networkTrial2.json?dl=1"
 

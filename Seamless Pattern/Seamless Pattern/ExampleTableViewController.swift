@@ -11,8 +11,7 @@ import UIKit
 class ExampleTableViewController: UITableViewController {
     
     var fetcher = Fetcher()
-    var lineExamples: [LineExample]!
-    var imageExamples: [ImageExample]!
+    var imageExamples: [ExampleImageLinks]!
     var indexPath: IndexPath?
 
     override func viewDidLoad() {
@@ -35,7 +34,7 @@ class ExampleTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return (lineExamples ?? []).count
+        return (imageExamples ?? []).count
     }
     
     //START HERE
@@ -44,7 +43,7 @@ class ExampleTableViewController: UITableViewController {
      let cell = tableView.dequeueReusableCell(withIdentifier: "lineExample(prototypeCell)", for: indexPath)
      
      
-     cell.textLabel?.text = lineExamples[indexPath.row].title ?? "Bleh" 
+     cell.textLabel?.text = imageExamples[indexPath.row].title ?? "Bleh"
      // Configure the cell...
      
      return cell
@@ -95,7 +94,8 @@ class ExampleTableViewController: UITableViewController {
         guard let destination = segue.destination as? ExampleViewController else { return }
         guard let indexPath = self.tableView.indexPathForSelectedRow else { return }
         
-        destination.exampleLines = lineExamples[indexPath.row].contents //sends the lineExample object's contents from the lineExamples array fetched from the internet.
+        destination.exampleLink = imageExamples[indexPath.row].contents
+        //sends the imageExamples object's contents from the imageExamples array fetched from the internet.
         
         
         // Get the new view controller using segue.destination.
@@ -109,7 +109,7 @@ class ExampleTableViewController: UITableViewController {
                 switch response {
                 case .success(let data):
                     do {
-                        self.imageExamples = try JSONDecoder().decode([ImageExample].self, from: data)
+                        self.imageExamples = try JSONDecoder().decode([ExampleImageLinks].self, from: data)
                         self.tableView.reloadData()
                         
                     } catch {

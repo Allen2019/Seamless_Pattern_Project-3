@@ -10,15 +10,13 @@ import UIKit
 
 class ExampleViewController: UIViewController {
 
-    @IBOutlet weak var exampleView: DrawView!
-
+    @IBOutlet weak var exampleView: UIImageView!
+    var exampleLink: String!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-    
-
-        
+        exampleView.load(url: URL(string: exampleLink)!)
     }
     
 
