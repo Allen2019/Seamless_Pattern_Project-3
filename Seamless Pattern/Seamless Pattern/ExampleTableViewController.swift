@@ -12,6 +12,7 @@ class ExampleTableViewController: UITableViewController {
     
     var fetcher = Fetcher()
     var lineExamples: [LineExample]!
+    var imageExamples: [ImageExample]!
     var indexPath: IndexPath?
 
     override func viewDidLoad() {
@@ -108,7 +109,7 @@ class ExampleTableViewController: UITableViewController {
                 switch response {
                 case .success(let data):
                     do {
-                        self.lineExamples = try JSONDecoder().decode([LineExample].self, from: data)
+                        self.imageExamples = try JSONDecoder().decode([ImageExample].self, from: data)
                         self.tableView.reloadData()
                         
                     } catch {

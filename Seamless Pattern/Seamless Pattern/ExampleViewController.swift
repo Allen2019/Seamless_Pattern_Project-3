@@ -11,22 +11,13 @@ import UIKit
 class ExampleViewController: UIViewController {
 
     @IBOutlet weak var exampleView: DrawView!
-    var exampleLines: [[Float]]!
-    var lines: [Line] = []
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        
-        for array in exampleLines
-        {
-            lines.append(Line.init(start: CGPoint(x:CGFloat(array[0]), y:CGFloat(array[1])), end: CGPoint(x:CGFloat(array[2]),y:CGFloat(array[3]))))
-        }
-        
-        exampleView.setLineCap(CGLineCap.round)
-        exampleView.setLines(lines)
-        exampleView.setNeedsDisplay()
+    
+
         
     }
     
@@ -41,4 +32,19 @@ class ExampleViewController: UIViewController {
     }
     */
 
+}
+
+
+extension UIImageView {
+    func load(url: URL) {
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self?.image = image
+                    }
+                }
+            }
+        }
+    }
 }
