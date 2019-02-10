@@ -10,27 +10,30 @@ import UIKit
 
 class PreviewViewController: UIViewController {
     
-    @IBOutlet weak var one: UIImageView!
-    @IBOutlet weak var two: UIImageView!
-    @IBOutlet weak var three: UIImageView!
-    @IBOutlet weak var four: UIImageView!
-    @IBOutlet weak var five: UIImageView!
-    @IBOutlet weak var six: UIImageView!
-    @IBOutlet weak var seven: UIImageView!
-    @IBOutlet weak var eight: UIImageView!
-    @IBOutlet weak var nine: UIImageView!
+    @IBOutlet weak var pre_view: UIImageView!
+
     
     func draw () {
         guard let image = viewToImage(with: dVC.drawView) else {return}
-        one.image = image
-        two.image = image
-        three.image = image
-        four.image = image
-        five.image = image
-        six.image = image
-        seven.image = image
-        eight.image = image
-        nine.image = image
+        guard let imageInCG = image.cgImage else {return}
+        UIGraphicsBeginImageContext(pre_view.frame.size)
+        
+        let smallWidth = pre_view.frame.width/3
+        let smallHeight = pre_view.frame.height/3
+        
+        let context = UIGraphicsGetCurrentContext()
+        
+        for j in stride(from: 0, through: pre_view.frame.height, by: smallHeight) {
+            for k in stride(from: 0, through: pre_view.frame.width*2/3, by: smallWidth) {
+                context?.draw(imageInCG, in: CGRect.init(x: k, y: j, width: smallWidth, height: smallHeight))
+            }
+        }
+        
+        pre_view.image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        pre_view.transform = CGAffineTransform(scaleX: 1, y: -1)
+   
     }
     
     override func viewDidLoad() {
