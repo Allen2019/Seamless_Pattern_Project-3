@@ -128,30 +128,4 @@ class ExampleTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     
-    /*
-    func fetch() {
-        guard let url = URL(string: ExampleURL) else { return }
-        fetcher.fetch(url: url) { (response) in
-            let op = BlockOperation {
-                switch response {
-                case .success(let data):
-                    do {
-                        self.imageExamples = try JSONDecoder().decode([ExampleImageLinks].self, from: data)
-                        self.tableView.reloadData()
-                        
-                    } catch {
-                        print(error.localizedDescription)
-                    }
-                    
-                case .failure(let msg):
-                    //()//this is how you do a null statement
-                    print("\(msg)") //but then Prof. Simons decided to do that
-                }
-            }
-            OperationQueue.main.addOperation(op)
-        }
-    }
-    */
-    //^Fetcher Method^//
-    
 }
