@@ -20,6 +20,8 @@ protocol drawViewProtocol
     
 }
 //maxHeight: CGFloat,
+
+/*
 func wrapping (position: CGPoint, maxWidth: CGFloat) -> CGPoint
 {
     if position.x > maxWidth
@@ -29,4 +31,4 @@ func wrapping (position: CGPoint, maxWidth: CGFloat) -> CGPoint
     
     return CGPoint(x: position.x, y: position.y)
 }
-
+*/

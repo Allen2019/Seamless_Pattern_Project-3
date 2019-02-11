@@ -32,7 +32,7 @@ class ExampleViewController: UIViewController {
 
 }
 
-
+//Reference: https://www.hackingwithswift.com/example-code/uikit/how-to-load-a-remote-image-url-into-uiimageview
 extension UIImageView {
     func load(url: URL) {
         DispatchQueue.global().async { [weak self] in

@@ -10,12 +10,13 @@ import UIKit
 
 class ExampleTableViewController: UITableViewController {
     
-    var fetcher = Fetcher()
     var imageExamples: [ExampleImageLinks]!
     var indexPath: IndexPath?
+    
+    let ExampleURL = "https://www.dropbox.com/s/1nlv8zanhmojyq2/ExampleImageLinks_Trial.json?dl=1"
 
     override func viewDidLoad() {
-        fetch()
+
         super.viewDidLoad()
 
         // Uncomment the following line to preserve selection between presentations
@@ -23,6 +24,31 @@ class ExampleTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        guard let url = URL(string: ExampleURL) else {return }
+        
+        URLSession.shared.dataTask(with: url) { (data, response, err) in
+            guard let data = data else {return}
+            
+            do
+            {
+                self.imageExamples = try JSONDecoder().decode([ExampleImageLinks].self, from: data)
+                
+                //Because I got "UITableView.reloadData() must be used from main thread only" when I tied to use self.tableView.reloadData() so I searched online and found this:
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+                //refernce: https://stackoverflow.com/questions/26277371/swift-uitableview-reloaddata-in-a-closure
+            }
+                
+            catch
+            {
+                print(error.localizedDescription)
+            }
+            
+            }.resume()
+        
+        
     }
 
     // MARK: - Table view data source
@@ -102,6 +128,7 @@ class ExampleTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     
+    /*
     func fetch() {
         guard let url = URL(string: ExampleURL) else { return }
         fetcher.fetch(url: url) { (response) in
@@ -124,6 +151,7 @@ class ExampleTableViewController: UITableViewController {
             OperationQueue.main.addOperation(op)
         }
     }
+    */
     //^Fetcher Method^//
     
 }

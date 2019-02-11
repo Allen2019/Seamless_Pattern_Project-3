@@ -8,14 +8,14 @@
 
 import Foundation
 
-let ExampleURL = "https://www.dropbox.com/s/1nlv8zanhmojyq2/ExampleImageLinks_Trial.json?dl=1"
+//let ExampleURL = "https://www.dropbox.com/s/1nlv8zanhmojyq2/ExampleImageLinks_Trial.json?dl=1"
 //let ExampleURL = "https://www.dropbox.com/s/myzwrkvau253nth/networkTrial2.json?dl=1"
 //networkAcessTrial file's link: "https://www.dropbox.com/s/myzwrkvau253nth/networkTrial2.json?dl=1"
 
 
 //From summer course taught by Van Simmons
 
-class Fetcher: NSObject, URLSessionDelegate {
+/* class Fetcher: NSObject, URLSessionDelegate {
     
     var handler: FetchCompletionHandler?
     func session() -> URLSession {
@@ -58,3 +58,4 @@ extension Fetcher {
         task.resume()
     }
 }
+*/

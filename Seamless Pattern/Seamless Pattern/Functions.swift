@@ -22,7 +22,7 @@ func viewToImage(with view: UIView) -> UIImage? {
     return nil
 }
 
-func loadLines(lineExample: [[Int]])
-{
-    
-}
+//func loadLines(lineExample: [[Int]])
+//{
+//
+//}
