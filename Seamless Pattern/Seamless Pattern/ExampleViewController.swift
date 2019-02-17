@@ -17,12 +17,13 @@ class ExampleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         exampleView.load(url: URL(string: exampleLink)!)
-        guard exampleView.image != nil else {print("exampleView.image is nil!?");return}
+//        guard exampleView.image != nil else {print("exampleView.image is nil!?");return}
     }
     
     //Added on Feb 16, 2019.  Can now repeat the exampleView's image in preview (via a polymorphed draw func)
     @IBAction func sendToPreview(_ sender: Any) {
         
+        guard exampleView.image != nil else {return}
         PVC.draw(exampleView.image!)
     }
 
