@@ -8,6 +8,8 @@
 
 import UIKit
 
+var PVC = PreviewViewController()
+
 class PreviewViewController: UIViewController {
     
     @IBOutlet weak var pre_view: UIImageView!
@@ -36,10 +38,32 @@ class PreviewViewController: UIViewController {
    
     }
     
+    func draw (_ image: UIImage) {
+        guard let imageInCG = image.cgImage else {print("Gunther");return}
+        UIGraphicsBeginImageContext(pre_view.frame.size)
+        
+        let smallWidth = pre_view.frame.width/3
+        let smallHeight = pre_view.frame.height/3
+        
+        let context = UIGraphicsGetCurrentContext()
+        
+        for j in stride(from: 0, through: pre_view.frame.height, by: smallHeight) {
+            for k in stride(from: 0, through: pre_view.frame.width*2/3, by: smallWidth) {
+                context?.draw(imageInCG, in: CGRect.init(x: k, y: j, width: smallWidth, height: smallHeight))
+            }
+        }
+        
+        pre_view.image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        pre_view.transform = CGAffineTransform(scaleX: 1, y: -1)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         draw()
+        PVC = self
     }
     @IBAction func updateButton(_ sender: Any) {
         draw()

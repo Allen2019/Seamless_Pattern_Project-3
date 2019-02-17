@@ -12,14 +12,19 @@ class ExampleViewController: UIViewController {
 
     @IBOutlet weak var exampleView: UIImageView!
     var exampleLink: String!
-    
+    var leImage = UIImage()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         exampleView.load(url: URL(string: exampleLink)!)
+        guard exampleView.image != nil else {print("exampleView.image is nil!?");return}
     }
     
-
+    @IBAction func sendToPreview(_ sender: Any) {
+        
+        PVC.draw(exampleView.image!)
+    }
+    
     /*
     // MARK: - Navigations
 
@@ -33,6 +38,8 @@ class ExampleViewController: UIViewController {
 }
 
 //Reference: https://www.hackingwithswift.com/example-code/uikit/how-to-load-a-remote-image-url-into-uiimageview
+
+//I think I'm going to modify this func to make it a standalone func
 extension UIImageView {
     func load(url: URL) {
         DispatchQueue.global().async { [weak self] in

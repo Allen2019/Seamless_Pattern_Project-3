@@ -11,7 +11,7 @@ import UIKit
 //Referenced summer course material by Van Simmons
 
 
-struct LineExample : Encodable, Decodable {
+struct LineExample : Decodable {
    
     private enum CodingKeys : String, CodingKey {
         case title = "title"

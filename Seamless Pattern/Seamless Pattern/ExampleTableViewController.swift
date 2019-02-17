@@ -14,6 +14,7 @@ class ExampleTableViewController: UITableViewController {
     var indexPath: IndexPath?
     
     let ExampleURL = "https://www.dropbox.com/s/1nlv8zanhmojyq2/ExampleImageLinks_Trial.json?dl=1"
+    
 
     override func viewDidLoad() {
 
@@ -27,7 +28,7 @@ class ExampleTableViewController: UITableViewController {
         
         guard let url = URL(string: ExampleURL) else {return }
         
-        URLSession.shared.dataTask(with: url) { (data, response, err) in
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let data = data else {return}
             
             do
@@ -47,8 +48,6 @@ class ExampleTableViewController: UITableViewController {
             }
             
             }.resume()
-        
-        
     }
 
     // MARK: - Table view data source
