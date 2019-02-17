@@ -20,20 +20,11 @@ class ExampleViewController: UIViewController {
         guard exampleView.image != nil else {print("exampleView.image is nil!?");return}
     }
     
+    //Added on Feb 16, 2019.  Can now repeat the exampleView's image in preview (via a polymorphed draw func)
     @IBAction func sendToPreview(_ sender: Any) {
         
         PVC.draw(exampleView.image!)
     }
-    
-    /*
-    // MARK: - Navigations
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
